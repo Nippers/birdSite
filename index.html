@@ -1,0 +1,182 @@
+<head>
+
+</head>
+
+<body>
+  <h1>Poppaea.Space</h1><br><br>
+  <h2>Life is bleak. Why not fritter away your brief existence playing browser games?</h2>
+<div id='buttons' style="float:left;">
+  <!--<div class="button" id="buttonA" onmouseover="buttonText(A)" onclick="Afunction()">A</div>-->
+  <!--<div class="buttonText" id="buttonTextA" style="display:none;">Games</div>-->
+  <br><br><br><br>
+  <button class="button" id="button2" onclick="Afunction()">A</button><br><br><br><br>
+  <button class="button" id="button2" onclick="Afunction()">B</button><br><br><br><br>
+  <button class="button" id="button3" onclick="Afunction()">C</button><br><br><br><br>
+  <button class="button" id="button4" onclick="Afunction()">D</button>
+</div>
+  <button class="button2" id="bird" onclick="moveBird()"></button>
+
+</body>
+
+<style>
+
+body {
+    background-image: url('Capture2.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: white;
+    padding: 1em;
+    text-align: center;
+    color:white;
+    font-family: 'helvetica';
+}
+h1{
+  background-color: rgba(0,0,0,0);
+  text-align: center;
+  /*font-weight: lighter;*/
+  font-size: 60;
+}
+h2{
+  background-color: rgba(0,0,0,0);
+  font-weight: lighter;
+  width: 85%;
+  text-align: center;
+  display: inline-block;
+}
+
+.button{
+  float:left;
+  height:50px;
+  width:50px;
+  position: relative;
+  top:-100;
+  color:black;
+  background-color: rgba(255,255,255,.8);
+  border-radius: 30px;
+  border: 1px solid black;
+  font-size: 18;
+}
+.button:hover{
+  /*background-color: rgba(255,255,255,.9);*/
+  background-color: orangered;
+  color: white;
+}
+
+#bird{
+  position:absolute;
+  width:30px;
+  height:30px;
+  left: 75%;
+  top: 280px;
+  background: url(bird.png);
+  background-size: 25px;
+  background-repeat: no-repeat;
+  border: none;
+  /*transition:top 4s ease, left 4s ease;
+  -webkit-transition:top 4s ease, left 4s ease;*/
+}
+#bird:focus{outline:0;}
+
+
+</style>
+
+<script>
+
+var birdPos;
+var dead = false;
+var clicks = 0;
+
+function moveBird() {
+
+clicks ++;
+
+if (dead === false){
+
+var a = [];
+
+if(birdPos === 0){
+  a = [1,2,3,4];
+} else if (birdPos === 1){
+  a = [0,2,3,4];
+} else if (birdPos === 2){
+  a = [0,1,3,4];
+}else if (birdPos === 3){
+  a = [0,1,2,4];
+}else{
+  a = [0,1,2,4];
+}
+
+if (clicks > 3){
+  b = Math.floor((Math.random() * 4) + 0);
+} else {
+  b = Math.floor((Math.random() * 3) + 0);
+}
+birdPos = a[b];
+var bird = document.getElementById('bird');
+
+if (birdPos === 0){
+  with(bird.style){
+    left = "50%";
+    top = "10px";
+    backgroundSize = "40px";
+    width = "40px";
+    height = "40px";
+  }
+  //birdPos = 1;
+} else if (birdPos === 1){
+  with(bird.style){
+    left = "40px";
+    top = "230px";
+    backgroundSize = "60px";
+    width = "60px";
+    height = "60px";
+  }
+  //birdPos = 2;
+} else if (birdPos === 2){
+  with(bird.style){
+    left = "30%";
+    top = "350px";
+    backgroundSize = "25px";
+    width = "25px";
+    height = "25px";
+  }
+  //birdPos = 3;
+} else if (birdPos === 3){
+  with(bird.style){
+    width = "25px";
+    height="25px";
+    left= "75%";
+    top= "280px";
+    backgroundSize= "25px";
+  }
+  //birdPos = 0;
+} else {
+  with(bird.style){
+    if (left.includes("%")){
+      left = (parseFloat(left)-3).toString()+"%";
+    }else{
+      left = (parseFloat(left)-30).toString()+"px";
+    }
+    if (top.includes("%")){
+      top = (parseFloat(top)-2).toString()+"%";
+    }else{
+      top = (parseFloat(top)-20).toString()+"px";
+    }
+    width = (parseFloat(width)+50).toString()+"px";
+    height = (parseFloat(height)+50).toString()+"px";
+    backgroundSize = (parseFloat(backgroundSize)+50).toString()+"px";
+    backgroundImage = "url('https://3.bp.blogspot.com/-Jt6D0UMKw_w/V00qgsRbZhI/AAAAAAAABsU/OdAFZzNqxHgMr-BODOZUl6VCgOH9vxF8ACLcB/s320/blood.png')";
+    dead = true;
+  }
+}
+
+}
+}
+
+function buttonText(num){
+  var txt = document.getElementById('buttonTextA');
+  //txt.style.display=inline;
+  //button.innerHTML = "Aaaaaaa";
+  txt.style.display="block";
+}
+</script>
